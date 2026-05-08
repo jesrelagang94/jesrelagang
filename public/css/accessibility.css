@@ -1,0 +1,193 @@
+/* =========================================
+   ACCESSIBILITY STYLES
+   Focus states, skip links, screen reader utilities
+   ========================================= */
+
+/* Screen Reader Only - Hidden visually but accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Skip to Main Content Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #C41E3A;
+  color: #fff;
+  padding: 12px 20px;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Enhanced Focus States */
+*:focus {
+  outline: 2px solid #C41E3A;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #C41E3A;
+  outline-offset: 2px;
+}
+
+/* Button Focus States */
+button:focus-visible,
+.ja_button a:focus-visible,
+input[type="submit"]:focus-visible {
+  outline: 3px solid #C41E3A;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(196, 30, 58, 0.2);
+}
+
+/* Link Focus States */
+a:focus-visible {
+  outline: 2px solid #C41E3A;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Form Input Focus States */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #C41E3A;
+  outline-offset: 0;
+  border-color: #C41E3A;
+  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.15);
+}
+
+/* Navigation Focus States */
+.anchor a:focus-visible {
+  background: rgba(196, 30, 58, 0.1);
+  border-radius: 4px;
+}
+
+/* Card/Interactive Element Focus */
+.list_inner:focus-within {
+  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.3);
+  border-radius: 8px;
+}
+
+/* Reduce Motion for Users Who Prefer It */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .wow {
+    visibility: visible !important;
+    animation: none !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .ja_button a,
+  button {
+    border: 2px solid currentColor;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .list_inner {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Touch Target Sizes - Minimum 44x44px for mobile */
+@media (max-width: 768px) {
+  button,
+  .ja_button a,
+  input[type="submit"],
+  a.clickable,
+  .menu a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Selection Colors */
+::selection {
+  background-color: #C41E3A;
+  color: #fff;
+}
+
+::-moz-selection {
+  background-color: #C41E3A;
+  color: #fff;
+}
+
+/* Visible Focus Indicators for Dark Mode */
+.dark *:focus-visible {
+  outline-color: #ff6b6b;
+}
+
+.dark .skip-link {
+  background: #ff6b6b;
+  color: #000;
+}
+
+/* Improved Link Visibility */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Form Error State Accessibility */
+.input-error {
+  border-color: #C41E3A !important;
+}
+
+.field-error {
+  color: #C41E3A;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Loading State Accessibility */
+[aria-busy="true"] {
+  cursor: wait;
+}
+
+/* Hidden Content for Screen Readers */
+[aria-hidden="true"] {
+  pointer-events: none;
+}

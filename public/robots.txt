@@ -1,0 +1,22 @@
+# https://www.robotstxt.org/robotstxt.html
+# Robots.txt for jesrelagang.pro
+
+User-agent: *
+Allow: /
+
+# Disallow admin area
+Disallow: /admin/
+Disallow: /admin
+
+# Disallow API endpoints
+Disallow: /api/
+
+# Allow important resources
+Allow: /manifest.json
+Allow: /sitemap.xml
+
+# Sitemap location
+Sitemap: https://jesrelagang.pro/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1

@@ -1,0 +1,29 @@
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect rate_limit.json from being accessed
+<Files "rate_limit.json">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Only allow POST requests to contact.php
+<FilesMatch "contact\.php">
+    <LimitExcept POST OPTIONS>
+        Order Deny,Allow
+        Deny from all
+    </LimitExcept>
+</FilesMatch>
+
+# Enable error reporting to log file (not browser)
+php_flag display_errors Off
+php_flag log_errors On
+php_value error_log /path/to/error.log

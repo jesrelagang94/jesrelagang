@@ -1,0 +1,188 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ============================================
+    // SECURITY HELPER FUNCTIONS
+    // ============================================
+
+    // Admin emails list - only these can access admin features
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email in [
+          'jesrelagang94@gmail.com',
+          'jessautogarage@gmail.com'
+        ];
+    }
+
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if user owns the document
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // ============================================
+    // VALIDATION HELPER FUNCTIONS
+    // ============================================
+
+    // Validate string field
+    function isValidString(field, minLen, maxLen) {
+      return field is string && field.size() >= minLen && field.size() <= maxLen;
+    }
+
+    // Validate email format (basic check)
+    function isValidEmail(email) {
+      return email is string &&
+             email.size() >= 5 &&
+             email.size() <= 254 &&
+             email.matches('^[^@]+@[^@]+\\.[^@]+$');
+    }
+
+    // Check for HTML tags (comprehensive check for XSS prevention)
+    function hasNoHtmlTags(text) {
+      return text is string &&
+             !text.lower().matches('.*<[^>]*>.*') &&
+             !text.lower().matches('.*javascript:.*') &&
+             !text.lower().matches('.*on\\w+=.*') &&
+             !text.lower().matches('.*data:.*') &&
+             !text.lower().matches('.*vbscript:.*');
+    }
+
+    // Check for injection attempts
+    function hasNoInjection(text) {
+      return text is string &&
+             !text.lower().matches('.*<script.*') &&
+             !text.lower().matches('.*<iframe.*') &&
+             !text.lower().matches('.*<object.*') &&
+             !text.lower().matches('.*<embed.*') &&
+             !text.lower().matches('.*<img[^>]*onerror.*') &&
+             !text.lower().matches('.*<svg[^>]*onload.*') &&
+             !text.lower().matches('.*eval\\s*\\(.*') &&
+             !text.lower().matches('.*expression\\s*\\(.*');
+    }
+
+    // Validate optional string field (null or valid string)
+    function isValidOptionalString(data, field, maxLen) {
+      return !(field in data) ||
+             data[field] == null ||
+             (data[field] is string && data[field].size() <= maxLen && hasNoInjection(data[field]));
+    }
+
+    // Validate timestamp is recent (within last minute for creation)
+    function isRecentTimestamp() {
+      return request.time < resource.data.createdAt + duration.value(1, 'm') ||
+             !('createdAt' in resource.data);
+    }
+
+    // ============================================
+    // COLLECTION RULES
+    // ============================================
+
+    // Users collection - admins can read/write all, users can only access their own
+    match /users/{userId} {
+      allow read: if isAdmin() || isOwner(userId);
+      allow create: if isAdmin() &&
+        request.resource.data.keys().hasAll(['email', 'role', 'createdAt']) &&
+        isValidEmail(request.resource.data.email);
+      allow update: if isAdmin() || (isOwner(userId) &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'email']));
+      allow delete: if isAdmin();
+    }
+
+    // Leads collection - contact form submissions
+    // Anyone can create (contact form), only admins can read/update/delete
+    match /leads/{leadId} {
+      allow create: if
+        // Required fields validation
+        request.resource.data.keys().hasAll(['name', 'email', 'message', 'source', 'status', 'createdAt']) &&
+        // Name validation: 2-100 characters
+        isValidString(request.resource.data.name, 2, 100) &&
+        // Email validation
+        isValidEmail(request.resource.data.email) &&
+        // Message validation: 10-5000 characters
+        isValidString(request.resource.data.message, 10, 5000) &&
+        // Status must be 'new' for public submissions
+        request.resource.data.status == 'new' &&
+        // Source validation
+        request.resource.data.source in ['website', 'referral', 'social', 'other'] &&
+        // SECURITY: Prevent XSS - no HTML tags or injection attempts
+        hasNoHtmlTags(request.resource.data.name) &&
+        hasNoHtmlTags(request.resource.data.message) &&
+        hasNoInjection(request.resource.data.name) &&
+        hasNoInjection(request.resource.data.message) &&
+        // Phone is optional - validate if provided
+        isValidOptionalString(request.resource.data, 'phone', 20) &&
+        // Service is optional - validate if provided
+        isValidOptionalString(request.resource.data, 'service', 100);
+
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Customers collection - admins only
+    match /customers/{customerId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Projects collection - admins only
+    match /projects/{projectId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Tasks collection - admins only
+    match /tasks/{taskId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Invoices collection - admins only
+    match /invoices/{invoiceId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Campaigns (Email Marketing) collection - admins only
+    match /campaigns/{campaignId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Settings collection - admins only
+    match /settings/{settingId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Visitors collection - visitor tracking
+    // Anyone can create (tracking), only admins can read/manage
+    match /visitors/{visitorId} {
+      allow create: if
+        // Required fields
+        request.resource.data.keys().hasAll(['createdAt']) &&
+        // IP validation (if provided)
+        (!('ip' in request.resource.data) ||
+          isValidString(request.resource.data.ip, 0, 45)) &&
+        // City validation
+        (!('city' in request.resource.data) ||
+          isValidString(request.resource.data.city, 0, 100)) &&
+        // Country validation
+        (!('country' in request.resource.data) ||
+          isValidString(request.resource.data.country, 0, 100)) &&
+        // Page URL validation
+        (!('page' in request.resource.data) ||
+          isValidString(request.resource.data.page, 0, 500)) &&
+        // User agent validation (prevent oversized data)
+        (!('userAgent' in request.resource.data) ||
+          isValidString(request.resource.data.userAgent, 0, 500)) &&
+        // Referrer validation
+        (!('referrer' in request.resource.data) ||
+          isValidString(request.resource.data.referrer, 0, 500));
+
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Rate limiting collection (optional - for tracking request counts)
+    match /rateLimits/{identifier} {
+      allow read, write: if false; // Server-side only
+    }
+  }
+}

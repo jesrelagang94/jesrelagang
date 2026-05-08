@@ -1,0 +1,137 @@
+# Security Configuration Documentation
+# Generated: 2025-10-09
+# Project: Jesrel Agang Portfolio
+
+## Deployment Platform Headers
+
+### For Netlify
+Headers are configured in `/public/_headers`
+Deploy the _headers file to enable security headers.
+
+### For Vercel
+Create `vercel.json` in project root:
+
+```json
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### For Apache (.htaccess)
+Create `.htaccess` in public directory:
+
+```apache
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "DENY"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+```
+
+### For Nginx
+Add to nginx.conf or site configuration:
+
+```nginx
+add_header X-Frame-Options "DENY" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-XSS-Protection "1; mode=block" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
+```
+
+## Security Checklist
+
+- [x] HTTP Security Headers configured
+- [x] External links protected with rel="noopener noreferrer"
+- [x] Contact form client-side validation
+- [x] Honeypot spam protection
+- [x] XSS protection (input sanitization)
+- [x] iframe sandbox attributes
+- [ ] HTTPS enforcement (configure on hosting platform)
+- [ ] Backend API security (if implemented)
+- [ ] Rate limiting (if contact form backend added)
+- [ ] Privacy policy and terms (legal requirement)
+
+## Vulnerability Assessment Results
+
+### High Priority (Fixed)
+✅ Tabnabbing vulnerability on external links
+✅ Missing security headers
+✅ Contact form lacks validation
+
+### Medium Priority (Fixed)
+✅ iframe lacks sandbox attribute
+✅ No spam protection on contact form
+
+### Low Priority (Recommendations)
+⚠️ Add backend for contact form with CSRF tokens
+⚠️ Implement rate limiting on form submissions
+⚠️ Add reCAPTCHA for additional spam protection
+⚠️ Create privacy policy and terms pages
+
+## Privacy & Compliance
+
+### Data Collection
+Currently, the portfolio collects:
+- Contact form submissions (name, email, phone, message)
+- Google Maps embed (may collect location data)
+
+### GDPR Compliance Recommendations
+1. Add Privacy Policy page
+2. Add cookie consent banner (if using analytics)
+3. Implement data retention policy
+4. Add unsubscribe mechanism for newsletter
+5. Document data processing activities
+
+### Contact Form Security
+- Client-side validation implemented
+- Honeypot field for spam protection
+- Input sanitization required on backend
+- CSRF protection required when backend is implemented
+
+## Testing Security Headers
+
+Test your deployed site:
+1. https://securityheaders.com
+2. https://observatory.mozilla.org
+3. https://www.ssllabs.com/ssltest/ (for HTTPS)
+
+Target Grades:
+- Security Headers: A+ rating
+- Mozilla Observatory: A+ rating
+- SSL Labs: A+ rating
+
+## Regular Security Maintenance
+
+1. **Monthly**: Run `npm audit` to check dependencies
+2. **Quarterly**: Review security headers and CSP
+3. **Annually**: Security audit and penetration testing
+4. **On Updates**: Review Vue/Vite security advisories
