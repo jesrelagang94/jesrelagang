@@ -15,6 +15,11 @@ const router = createRouter({
       name: "IndexDarkView",
       component: () => import("../views/IndexDarkView.vue"),
     },
+    {
+      path: "/v2",
+      name: "IndexV2",
+      component: () => import("../views/IndexV2View.vue"),
+    },
     // Admin routes
     ...adminRoutes,
     // 404 Not Found - must be last
