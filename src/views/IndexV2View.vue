@@ -2,6 +2,7 @@
 import SiteHeader from '@/components/sections/SiteHeader.vue';
 import Hero from '@/components/sections/Hero.vue';
 import ServiceGrid from '@/components/sections/ServiceGrid.vue';
+import TrustStrip from '@/components/sections/TrustStrip.vue';
 </script>
 
 <template>
@@ -9,5 +10,6 @@ import ServiceGrid from '@/components/sections/ServiceGrid.vue';
   <main>
     <Hero />
     <ServiceGrid />
+    <TrustStrip />
   </main>
 </template>
