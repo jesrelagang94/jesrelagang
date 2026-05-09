@@ -15,23 +15,27 @@ lerna-debug.log*
 .env.development
 .env.staging
 *.env
+env
 
 # Firebase credentials (SECURITY: Never commit these)
 *-firebase-adminsdk-*.json
 firebase-debug.log
 .firebaserc
 
+# Dependencies and build output
 node_modules
-.DS_Store
 dist
 dist-ssr
 coverage
 *.local
 
-/cypress/videos/
-/cypress/screenshots/
+# Build artifacts
+dist/stats.html
+*.gz
+*.br
 
-# Editor directories and files
+# OS / Editor
+.DS_Store
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -40,10 +44,15 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-
 *.tsbuildinfo
-*.json
-package-lock.json
-env
-package-lock.json
-package.json
+
+# Cypress (if reintroduced)
+/cypress/videos/
+/cypress/screenshots/
+
+# AI-session artifacts
+claudedocs/
+.playwright-mcp/
+
+# Vendor theme docs (deleted in Phase 1; defensively ignored to prevent re-add)
+documentation/
