@@ -11,7 +11,7 @@ import { useRoute } from "vue-router";
 import PreLoader from "./components/layout/PreLoader.vue";
 import Toast from "./components/ui/Toast.vue";
 import CookieConsent from "./components/CookieConsent.vue";
-import { dataImage, portfolioHover, scroll_, stickyNav } from "./utilits";
+import { dataImage, portfolioHover, scroll_, stickyNav } from "@/utils/dom-effects";
 import { trackVisitor } from "./composables/useVisitorTracker";
 
 import WOW from "wow.js";

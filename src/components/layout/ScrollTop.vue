@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { scrollTop } from "@/utilits";
+import { scrollTop } from "@/utils/dom-effects";
 
 export default {
   name: "ScrollTop",

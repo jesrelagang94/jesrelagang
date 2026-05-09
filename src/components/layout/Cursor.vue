@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { customCursor } from "@/utilits";
+import { customCursor } from "@/utils/dom-effects";
 
 export default {
   name: "CursorVue",

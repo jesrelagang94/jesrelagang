@@ -51,7 +51,7 @@ import { useHead } from "@vueuse/head";
 import HeaderVue from "@/components/layout/Header.vue";
 import MobileHeaderVue from "@/components/layout/MobileHeader.vue";
 import ScrollTopVue from "@/components/layout/ScrollTop.vue";
-import { activeSkillProgress } from "@/utilits";
+import { activeSkillProgress } from "@/utils/dom-effects";
 import AboutComponent from "../components/AboutComponent.vue";
 import ContactComponent from "../components/ContactComponent.vue";
 import CopyrightComponent from "../components/CopyrightComponent.vue";

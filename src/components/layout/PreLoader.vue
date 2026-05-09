@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { preloader } from "@/utilits";
+import { preloader } from "@/utils/dom-effects";
 
 export default {
   name: "PreLoader",
