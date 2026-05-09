@@ -1,4 +1,5 @@
 <script setup>
+import SiteHeader from '@/components/sections/SiteHeader.vue';
 import BaseContainer from '@/components/ui/BaseContainer.vue';
 import BaseSection from '@/components/ui/BaseSection.vue';
 import BaseButton from '@/components/ui/BaseButton.vue';
@@ -8,6 +9,7 @@ import BaseCard from '@/components/ui/BaseCard.vue';
 </script>
 
 <template>
+  <SiteHeader />
   <main class="v2-shell">
     <BaseSection>
       <BaseContainer>
