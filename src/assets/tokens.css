@@ -1,0 +1,54 @@
+/* Design tokens for the v2 public site. Imported once in main.js.
+ * Use via var(--color-ink) etc. inside scoped component styles. */
+:root {
+  /* Colors */
+  --color-ink: #1a1a2e;
+  --color-brand: #C41E3A;
+  --color-brand-soft: #fef0f2;
+  --color-surface: #fafaf8;
+  --color-success: #22c55e;
+  --color-muted: #666;
+  --color-border: #eaeaea;
+  --color-white: #ffffff;
+
+  /* Type */
+  --font-display: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale (values live here; components reference) */
+  --fs-display: clamp(28px, 5vw, 42px);
+  --fs-h2: clamp(22px, 3.2vw, 30px);
+  --fs-h3: 17px;
+  --fs-body: 16px;
+  --fs-small: 13px;
+  --fs-eyebrow: 11px;
+
+  /* Spacing scale */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --sh-sm: 0 2px 8px rgba(0, 0, 0, .06);
+  --sh-md: 0 6px 18px rgba(26, 26, 46, .12);
+  --sh-lg: 0 12px 32px rgba(0, 0, 0, .12);
+
+  /* Transitions */
+  --tr-fast: 150ms ease;
+  --tr-med: 250ms ease;
+}
