@@ -5,6 +5,7 @@ import ServiceGrid from '@/components/sections/ServiceGrid.vue';
 import TrustStrip from '@/components/sections/TrustStrip.vue';
 import PortfolioGrid from '@/components/sections/PortfolioGrid.vue';
 import ProcessSteps from '@/components/sections/ProcessSteps.vue';
+import About from '@/components/sections/About.vue';
 </script>
 
 <template>
@@ -15,5 +16,6 @@ import ProcessSteps from '@/components/sections/ProcessSteps.vue';
     <TrustStrip />
     <PortfolioGrid />
     <ProcessSteps />
+    <About />
   </main>
 </template>
