@@ -34,7 +34,7 @@ defineProps({
 
 <style scoped>
 .cta-section {
-  padding: 80px 0 !important;
+  padding: 80px 0;
   text-align: center;
 }
 .cta-section--alt { background: #fafaf8; border-top: 1px solid #eaeaea; }
@@ -85,6 +85,6 @@ defineProps({
 .cta-section__secondary:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
-  .cta-section { padding: 56px 0 !important; }
+  .cta-section { padding: 56px 0; }
 }
 </style>

@@ -43,7 +43,6 @@ const moreCount = 15;
 .trust-strip {
   background: #fafaf8;
   border-top: 1px solid #eaeaea;
-  border-bottom: 1px solid #eaeaea;
   padding: 24px 0;
 }
 .trust-strip__inner {

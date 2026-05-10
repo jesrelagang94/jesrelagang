@@ -62,7 +62,7 @@ useHead({
       primary-href="/contact"
       secondary-label="Email me directly"
       secondary-href="mailto:hello@jesrelagang.pro"
-      variant="alt"
+      variant="default"
     />
   </main>
 </template>

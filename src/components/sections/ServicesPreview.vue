@@ -66,7 +66,7 @@ const services = [
 </template>
 
 <style scoped>
-.services-preview { padding: 80px 0; }
+.services-preview { padding: 80px 0; scroll-margin-top: 80px; }
 .services-preview__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -129,6 +129,7 @@ const services = [
 .services-preview__all:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
+  .services-preview { padding: 48px 0; }
   .services-preview__grid { grid-template-columns: 1fr; }
 }
 </style>

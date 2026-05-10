@@ -61,7 +61,7 @@ const featured = [
 </template>
 
 <style scoped>
-.featured-work { padding: 80px 0; background: #fafaf8; }
+.featured-work { padding: 80px 0; background: #fafaf8; scroll-margin-top: 80px; }
 .featured-work__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -133,7 +133,8 @@ const featured = [
 @media (max-width: 900px) {
   .featured-work__grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .featured-work { padding: 48px 0; }
   .featured-work__grid { grid-template-columns: 1fr; }
 }
 </style>

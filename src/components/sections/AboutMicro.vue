@@ -31,7 +31,7 @@ const portraitSrc = '/img/banner/avatar.png';
 </template>
 
 <style scoped>
-.about-micro { padding: 80px 0; }
+.about-micro { padding: 80px 0; background: #fafaf8; scroll-margin-top: 80px; }
 .about-micro__grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -89,5 +89,8 @@ const portraitSrc = '/img/banner/avatar.png';
 @media (max-width: 900px) {
   .about-micro__grid { grid-template-columns: 1fr; gap: 32px; }
   .about-micro__photo { max-width: 320px; margin: 0 auto; }
+}
+@media (max-width: 768px) {
+  .about-micro { padding: 48px 0; }
 }
 </style>

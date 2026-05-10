@@ -103,4 +103,8 @@ defineProps({
   text-decoration: none;
 }
 .featured-testimonial__more a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .featured-testimonial { padding: 48px 0; }
+}
 </style>
