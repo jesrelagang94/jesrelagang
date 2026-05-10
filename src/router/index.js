@@ -7,9 +7,30 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "Index",
-      component: () => import("../views/IndexView.vue"),
+      name: "Home",
+      component: () => import("../views/HomeView.vue"),
     },
+    {
+      path: "/services",
+      name: "Services",
+      component: () => import("../views/ServicesView.vue"),
+    },
+    {
+      path: "/work",
+      name: "Work",
+      component: () => import("../views/WorkViewTemp.vue"),
+    },
+    {
+      path: "/about",
+      name: "About",
+      component: () => import("../views/AboutViewTemp.vue"),
+    },
+    {
+      path: "/contact",
+      name: "Contact",
+      component: () => import("../views/ContactViewTemp.vue"),
+    },
+    // Phase 3a keeps /dark untouched — retired in Phase 3b
     {
       path: "/dark",
       name: "IndexDarkView",
@@ -24,13 +45,19 @@ const router = createRouter({
       component: () => import("../views/NotFoundView.vue"),
     },
   ],
-  // Scroll behavior for better UX
+  // Scroll behavior: honor hash anchors (e.g., /services#mobile-apps), savedPosition for back/forward
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
-    } else {
-      return { top: 0 };
     }
+    if (to.hash) {
+      return {
+        el: to.hash,
+        top: 80, // offset for sticky nav
+        behavior: 'smooth',
+      };
+    }
+    return { top: 0 };
   },
 });
 
