@@ -8,7 +8,7 @@
       <div class="hero-overlay">
         <div class="hero-content">
           <div class="hero-text">
-            <p class="hero-subtitle">N8N Automation Expert | Web & Mobile Developer | VA Services</p>
+            <p class="hero-subtitle">Web &amp; Mobile App Developer &middot; Workflow Automation &middot; Retainer Support</p>
             <h1 class="hero-title">
               Hello, I'm<br>
               <span class="orangeText">Jesrel Agang</span>
