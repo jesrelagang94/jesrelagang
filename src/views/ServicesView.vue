@@ -44,7 +44,7 @@ useHead({
     <!-- 4 service detail blocks (anchored) -->
     <ServiceDetailBlock
       anchor-id="web-development"
-      icon="⚡"
+      icon-name="web"
       title="Web Development"
       :paragraphs="[
         'Marketing sites, dashboards, internal tools, SaaS products. Fast, accessible, SEO-ready, and built to scale with your business.',
@@ -70,7 +70,7 @@ useHead({
 
     <ServiceDetailBlock
       anchor-id="mobile-apps"
-      icon="📱"
+      icon-name="mobile"
       title="Mobile Apps"
       :paragraphs="[
         'Cross-platform iOS and Android apps with React Native. Native-feel performance from one codebase, deployed to both App Store and Play Store.',
@@ -96,7 +96,7 @@ useHead({
 
     <ServiceDetailBlock
       anchor-id="n8n-automation"
-      icon="🔗"
+      icon-name="n8n"
       title="N8N Automation"
       :paragraphs="[
         'Workflow automation that saves teams 15+ hours per week. CRM sync, lead routing, billing flows, custom integrations, and anything else that connects the tools you already pay for.',
@@ -122,7 +122,7 @@ useHead({
 
     <ServiceDetailBlock
       anchor-id="tech-support"
-      icon="🛟"
+      icon-name="support"
       title="Technical Support"
       :paragraphs="[
         'Ongoing maintenance, bug fixes, monitoring, and on-call dev help. Monthly retainers for teams that need a reliable second set of hands without a full-time hire.',
