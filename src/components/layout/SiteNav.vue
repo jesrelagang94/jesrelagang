@@ -10,6 +10,7 @@ const route = useRoute();
 const mobileOpen = ref(false);
 
 const links = [
+  { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
   { to: '/work', label: 'Work' },
   { to: '/about', label: 'About' },
