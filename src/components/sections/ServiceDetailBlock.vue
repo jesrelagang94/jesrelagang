@@ -1,7 +1,9 @@
 <script setup>
+import ServiceIcon from '@/components/ui/ServiceIcon.vue';
+
 defineProps({
   anchorId: { type: String, required: true },     // 'web-development', 'mobile-apps', etc.
-  icon: { type: String, required: true },         // emoji or short text
+  iconName: { type: String, required: true },     // 'web' | 'mobile' | 'n8n' | 'support'
   title: { type: String, required: true },
   paragraphs: { type: Array, required: true },    // string[]; 3 paragraphs typical
   audience: { type: String, required: true },     // 'Who it's for' content
@@ -21,7 +23,9 @@ defineProps({
     <div class="container">
       <div class="service-block__inner">
         <div class="service-block__visual">
-          <div class="service-block__icon" aria-hidden="true">{{ icon }}</div>
+          <div class="service-block__icon" aria-hidden="true">
+            <ServiceIcon :name="iconName" />
+          </div>
         </div>
         <div class="service-block__content">
           <h2 class="service-block__title">{{ title }}</h2>
@@ -96,7 +100,10 @@ defineProps({
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 44px;
+}
+.service-block__icon :deep(.service-icon) {
+  width: 44px;
+  height: 44px;
 }
 
 .service-block__title {
@@ -194,7 +201,8 @@ defineProps({
   .service-block--reverse .service-block__inner { grid-template-columns: 1fr; gap: 24px; }
   .service-block--reverse .service-block__visual,
   .service-block--reverse .service-block__content { order: unset; }
-  .service-block__icon { width: 72px; height: 72px; font-size: 32px; }
+  .service-block__icon { width: 72px; height: 72px; }
+  .service-block__icon :deep(.service-icon) { width: 36px; height: 36px; }
   .service-block__deliverables { grid-template-columns: 1fr; }
 }
 </style>

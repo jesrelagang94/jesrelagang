@@ -1,25 +1,27 @@
 <script setup>
+import ServiceIcon from '@/components/ui/ServiceIcon.vue';
+
 const services = [
   {
-    icon: '⚡',
+    iconName: 'web',
     title: 'Web Development',
     blurb: 'Marketing sites, dashboards, SaaS — fast, accessible, SEO-ready.',
     href: '/services#web-development',
   },
   {
-    icon: '📱',
+    iconName: 'mobile',
     title: 'Mobile Apps',
     blurb: 'iOS + Android apps with React Native — push, payments, offline.',
     href: '/services#mobile-apps',
   },
   {
-    icon: '🔗',
+    iconName: 'n8n',
     title: 'N8N Automation',
     blurb: 'Workflows that save teams 15+ hours per week.',
     href: '/services#n8n-automation',
   },
   {
-    icon: '🛟',
+    iconName: 'support',
     title: 'Technical Support',
     blurb: 'Monthly retainers for monitoring, fixes, on-call dev help.',
     href: '/services#tech-support',
@@ -45,7 +47,9 @@ const services = [
           :to="s.href"
           class="services-preview__card"
         >
-          <div class="services-preview__icon" aria-hidden="true">{{ s.icon }}</div>
+          <div class="services-preview__icon" aria-hidden="true">
+            <ServiceIcon :name="s.iconName" />
+          </div>
           <h3 class="services-preview__title">{{ s.title }}</h3>
           <p class="services-preview__blurb">{{ s.blurb }}</p>
           <span class="services-preview__link">Learn more →</span>
