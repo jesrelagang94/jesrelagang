@@ -18,20 +18,11 @@ useHead({
 
 <template>
   <main class="contact-view-temp">
-    <section class="ja_section page-hero">
-      <div class="container">
-        <div class="ja_main_title" data-align="center">
-          <span>Let's work together</span>
-          <h3>Let's talk about your project.</h3>
-          <p>The first 30 minutes are free. Pick a time that works, or send a note.</p>
-        </div>
-      </div>
-    </section>
     <ContactComponent />
     <FAQComponent />
   </main>
 </template>
 
 <style scoped>
-.page-hero { padding: 80px 0 20px; }
+.contact-view-temp { overflow: hidden; }
 </style>

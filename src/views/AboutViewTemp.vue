@@ -20,25 +20,17 @@ useHead({
 
 <template>
   <main class="about-view-temp">
-    <section class="ja_section page-hero">
-      <div class="container">
-        <div class="ja_main_title" data-align="center">
-          <span>About me</span>
-          <h3>A one-person boutique agency.</h3>
-        </div>
-      </div>
-    </section>
     <AboutComponent />
     <SkillComponent />
     <CTASection
       headline="Want to work together?"
       primary-label="Book a call"
       primary-href="/contact"
-      variant="default"
+      variant="alt"
     />
   </main>
 </template>
 
 <style scoped>
-.page-hero { padding: 80px 0 20px; }
+.about-view-temp { overflow: hidden; }
 </style>

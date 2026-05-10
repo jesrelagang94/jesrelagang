@@ -18,15 +18,6 @@ useHead({
 
 <template>
   <main class="work-view-temp">
-    <section class="ja_section page-hero">
-      <div class="container">
-        <div class="ja_main_title" data-align="center">
-          <span>Selected work</span>
-          <h3>Recent projects</h3>
-          <p>Real outcomes, not just screenshots.</p>
-        </div>
-      </div>
-    </section>
     <PortfolioComponent />
     <CTASection
       headline="Like what you see? Let's build something."
@@ -38,5 +29,5 @@ useHead({
 </template>
 
 <style scoped>
-.page-hero { padding: 80px 0 20px; }
+.work-view-temp { overflow: hidden; }
 </style>
