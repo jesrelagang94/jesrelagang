@@ -43,7 +43,7 @@ const steps = [
 </template>
 
 <style scoped>
-.process-flow { padding: 80px 0; background: #fafaf8; }
+.process-flow { padding: 80px 0; background: #fafaf8; scroll-margin-top: 80px; }
 
 .process-flow__steps {
   list-style: none;
@@ -104,8 +104,11 @@ const steps = [
   margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .process-flow__steps { grid-template-columns: 1fr; gap: 24px; }
   .process-flow__steps::before { display: none; }
+}
+@media (max-width: 768px) {
+  .process-flow { padding: 48px 0; }
 }
 </style>
